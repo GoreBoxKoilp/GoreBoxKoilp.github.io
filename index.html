@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>灵境 · 初页 | 沉浸式体验</title>
+    <!-- 引入 Google Fonts 提升字体质感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f9faff 0%, #eef2fc 100%);
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5b6e8c;
+        }
+
+        /* 整体容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* 头部区域 */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.12);
+            backdrop-filter: blur(2px);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #1e40af;
+            margin-bottom: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(59,130,246,0.25);
+        }
+
+        .badge i {
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0f2b3d, #2563eb, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 650px;
+            color: #334155;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary i {
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -12px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            padding: 0.8rem 2rem;
+            border-radius: 48px;
+            font-weight: 500;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: #ffffffcc;
+            border-color: #3b82f6;
+            color: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        /* 卡片网格区 */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1.5rem 0;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #a5f3fc);
+            border-radius: 4px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 10px 25px -12px rgba(0,0,0,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            background: white;
+            border-color: #e2e8f0;
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 2.4rem;
+            color: #3b82f6;
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: #475569;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .card-link {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .card-link:hover {
+            gap: 10px;
+            border-bottom-color: #3b82f6;
+        }
+
+        /* 交互式语录区域 */
+        .quote-block {
+            background: linear-gradient(115deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-left: 6px solid #3b82f6;
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+
+        .quote-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .refresh-quote {
+            background: none;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.2s;
+            color: #1e293b;
+        }
+
+        .refresh-quote:hover {
+            background: #eef2ff;
+            border-color: #3b82f6;
+        }
+
+        /* 计数器互动模块 */
+        .counter-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e9eef3;
+        }
+
+        .counter-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-value {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: 2px;
+            margin: 0.5rem 0;
+            background: linear-gradient(145deg, #1e2a3a, #2d3a4a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .counter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .counter-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #0f172a;
+        }
+
+        .counter-btn.reset-btn {
+            width: auto;
+            padding: 0 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: #eef2ff;
+            color: #2563eb;
+        }
+
+        .counter-btn:hover {
+            background: #e2e8f0;
+            transform: scale(0.96);
+        }
+
+        /* 动态消息提示 */
+        .toast-msg {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293bdd;
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 0.7rem 1.6rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #dce5ef;
+            color: #5b6e8c;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                padding: 1rem 1.2rem 2rem;
+            }
+            h1 {
+                font-size: 2.4rem;
+            }
+            .hero-desc {
+                font-size: 1rem;
+            }
+            .quote-text {
+                font-size: 1.2rem;
+            }
+            .counter-value {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 头部 Hero 区 -->
+    <div class="hero">
+        <div class="badge">
+            <i class="fas fa-crown"></i> 探索 · 灵感之境
+        </div>
+        <h1>构建属于你的数字诗意</h1>
+        <div class="hero-desc">
+            简约优雅的交互体验，融合动态微交互与视觉美学。
+            让每一次点击，都成为创造美好的瞬间。
+        </div>
+        <div class="cta-group">
+            <button class="btn-primary" id="exploreBtn">
+                <i class="fas fa-compass"></i> 即刻探索
+            </button>
+            <button class="btn-outline" id="learnMoreBtn">
+                <i class="fas fa-feather-alt"></i> 了解更多
+            </button>
+        </div>
+    </div>
+
+    <!-- 功能卡片区域 -->
+    <div>
+        <div class="section-title">✨ 灵感工具箱</div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-palette"></i></div>
+                <h3>动态美学</h3>
+                <p>现代渐变、玻璃拟态与流畅动画，每一处细节都为你带来愉悦的视觉享受。</p>
+                <a href="#" class="card-link" id="cardLink1">探索配色 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-heart"></i></div>
+                <h3>暖心交互</h3>
+                <p>点击、悬停、反馈，精心设计的微动效让界面拥有温度，增强情感连接。</p>
+                <a href="#" class="card-link" id="cardLink2">体验心意 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-cloud-sun"></i></div>
+                <h3>沉浸语录</h3>
+                <p>随机智慧格言，轻点刷新，每一天都有不一样的灵感陪伴左右。</p>
+                <a href="#" class="card-link" id="cardLink3">获取灵感 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 动态语录区块 (可刷新) -->
+    <div class="quote-block" id="quoteBlock">
+        <div class="quote-text" id="quoteText">“代码如诗，设计如歌。在简洁中看见深邃，在互动中感受生命。” </div>
+        <div class="quote-author">
+            <i class="fas fa-quote-left" style="color:#3b82f6"></i> 
+            <span id="quoteAuthor">—— 灵境工坊 · 设计哲学</span>
+        </div>
+        <button class="refresh-quote" id="refreshQuoteBtn"><i class="fas fa-sync-alt"></i> 换一句灵感</button>
+    </div>
+
+    <!-- 计数器 互动小模块 -->
+    <div class="counter-card">
+        <div class="counter-title"><i class="fas fa-star-of-life"></i> 今日心动值</div>
+        <div class="counter-value" id="counterDisplay">0</div>
+        <div class="counter-buttons">
+            <button class="counter-btn" id="decrementBtn"><i class="fas fa-minus"></i></button>
+            <button class="counter-btn" id="incrementBtn"><i class="fas fa-plus"></i></button>
+            <button class="counter-btn reset-btn" id="resetBtn">重置</button>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.75rem; color:#64748b">每一次点击，累积微小而确定的喜悦</p>
+    </div>
+
+    <footer>
+        <p><i class="far fa-copyright"></i> 灵境实验 · 探索网页交互艺术 | 设计即呼吸</p>
+        <p style="margin-top: 8px; font-size: 0.7rem;">✨ 纯手工打造 · 微交互与动态响应 ✨</p>
+    </footer>
+</div>
+
+<!-- 全局浮动提示 -->
+<div id="toastMsg" class="toast-msg">✨ 欢迎来到灵感世界</div>
+
+<script>
+    (function(){
+        // ---------- 1. 动态 Toast 提示 ----------
+        const toast = document.getElementById('toastMsg');
+        function showMessage(text, duration = 2000) {
+            toast.innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        // 初次加载显示问候
+        window.addEventListener('load', () => {
+            showMessage('✨ 欢迎来到灵境 · 每一次互动都有回响 ✨', 2500);
+        });
+
+        // ---------- 2. 按钮交互反馈 ----------
+        const exploreBtn = document.getElementById('exploreBtn');
+        const learnMoreBtn = document.getElementById('learnMoreBtn');
+        
+        exploreBtn.addEventListener('click', () => {
+            showMessage('🧭 探索之旅已开启，发现更多美妙卡片', 1800);
+            // 平滑滚动到卡片区域
+            document.querySelector('.cards-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        learnMoreBtn.addEventListener('click', () => {
+            showMessage('📖 灵感与匠心，尽在每一处细节之中', 1800);
+            // 滚动至页脚附近，展示更多信息
+            footer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // 卡片内部链接的趣味提示 (阻止实际跳转)
+        const cardLink1 = document.getElementById('cardLink1');
+        const cardLink2 = document.getElementById('cardLink2');
+        const cardLink3 = document.getElementById('cardLink3');
+        
+        cardLink1.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMessage('🎨 优雅渐变 + 毛玻璃质感，色彩心理学的美学表达', 2000);
+        });
+        cardLink2.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMessage('❤️ 微交互提升幸福感，按钮悬浮与点击动效让界面呼吸', 2000);
+        });
+        cardLink3.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMessage('📖 智慧格言助你沉淀内心，点击语录旁的刷新按钮更换', 2000);
+        });
+
+        // ---------- 3. 名言警句库 (带作者) ----------
+        const quotes = [
+            { text: "设计不只是它看起来怎样，还在于它如何工作。", author: "—— 唐·诺曼" },
+            { text: "简洁是终极的精致。", author: "—— 达·芬奇" },
+            { text: "优秀的代码是它最好的文档。", author: "—— 史蒂夫·麦康奈尔" },
+            { text: "美将拯救世界。", author: "—— 陀思妥耶夫斯基" },
+            { text: "在互动中，惊喜是最好的礼物。", author: "—— 交互设计沉思录" },
+            { text: "让不可见变为可见，是设计的魔法。", author: "—— 原研哉" },
+            { text: "色彩是直接对心灵产生影响的一种方式。", author: "—— 瓦西里·康定斯基" },
+            { text: "创造力就是把看似无关的事物连接起来。", author: "—— 史蒂夫·乔布斯" },
+            { text: "每一个微小的交互，都在塑造数字时代的温度。", author: "—— 灵境设计志" },
+            { text: "简单是可靠的孪生兄弟。", author: "——  Antoine de Saint-Exupéry" }
+        ];
+        
+        const quoteTextEl = document.getElementById('quoteText');
+        const quoteAuthorEl = document.getElementById('quoteAuthor');
+        const refreshQuoteBtn = document.getElementById('refreshQuoteBtn');
+        
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+        
+        function updateQuote() {
+            const randomQuote = getRandomQuote();
+            quoteTextEl.innerText = `“${randomQuote.text}”`;
+            quoteAuthorEl.innerText = randomQuote.author;
+        }
+        
+        refreshQuoteBtn.addEventListener('click', () => {
+            updateQuote();
+            showMessage('✨ 新灵感已送达，祝你今日有所思 ✨', 1500);
+            // 增加微动效: 轻微缩放语录卡片
+            const quoteBlock = document.getElementById('quoteBlock');
+            quoteBlock.style.transform = 'scale(1.01)';
+            setTimeout(() => { quoteBlock.style.transform = ''; }, 200);
+        });
+        
+        // 初始化一条随机语录
+        updateQuote();
+        
+        // ---------- 4. 计数器模块 (本地存储增强体验) ----------
+        const counterDisplay = document.getElementById('counterDisplay');
+        const incrementBtn = document.getElementById('incrementBtn');
+        const decrementBtn = document.getElementById('decrementBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // 从 localStorage 获取上次计数，若没有则为 0
+        let currentCount = (() => {
+            const saved = localStorage.getItem('inspireCounter');
+            if(saved !== null && !isNaN(parseInt(saved))) {
+                return parseInt(saved);
+            }
+            return 0;
+        })();
+        
+        function updateCounterUI() {
+            counterDisplay.innerText = currentCount;
+            // 存入本地存储
+            localStorage.setItem('inspireCounter', currentCount);
+            // 给数字增加动画效果
+            counterDisplay.style.transform = 'scale(1.08)';
+            setTimeout(() => { counterDisplay.style.transform = ''; }, 150);
+        }
+        
+        function incrementCount() {
+            currentCount++;
+            updateCounterUI();
+            showMessage(`❤️ 心动值 +1 · 当前 ${currentCount}`, 1200);
+            // 触发轻微彩色闪烁效果
+            const card = document.querySelector('.counter-card');
+            card.style.backgroundColor = '#fefce8';
+            setTimeout(() => { card.style.backgroundColor = ''; }, 200);
+        }
+        
+        function decrementCount() {
+            if(currentCount > 0) {
+                currentCount--;
+                updateCounterUI();
+                showMessage(`💙 心动值 -1 · 当前 ${currentCount}`, 1200);
+            } else {
+                showMessage(`🌸 心动值已经是 0 啦，不能再减了哟`, 1200);
+                // 抖动提示
+                const counterVal = counterDisplay;
+                counterVal.style.transform = 'translateX(4px)';
+                setTimeout(() => counterVal.style.transform = '', 100);
+                setTimeout(() => counterVal.style.transform = 'translateX(-4px)', 100);
+                setTimeout(() => counterVal.style.transform = '', 200);
+            }
+        }
+        
+        function resetCount() {
+            currentCount = 0;
+            updateCounterUI();
+            showMessage(`🔄 心动值已重置归零，重新积累美好`, 1500);
+            // 重置动画
+            const cardDiv = document.querySelector('.counter-card');
+            cardDiv.style.transform = 'scale(0.99)';
+            setTimeout(() => cardDiv.style.transform = '', 200);
+        }
+        
+        incrementBtn.addEventListener('click', incrementCount);
+        decrementBtn.addEventListener('click', decrementCount);
+        resetBtn.addEventListener('click', resetCount);
+        
+        // 初始化计数器显示
+        updateCounterUI();
+        
+        // ---------- 额外趣味小彩蛋: 控制台输出设计感 ----------
+        console.log("%c✨ 灵境初页已加载 | 设计细节：微交互，动态语录，计数器本地持久 ✨", "color: #3b82f6; font-size: 14px; font-weight: bold;");
+        console.log("%c🎉 试着点击卡片，刷新语录，调整心动值——体验流畅反馈", "color: #64748b;");
+        
+        // 简单的节日彩蛋: 如果今日是周末(星期六或日)显示特别消息(可选)
+        const today = new Date();
+        const day = today.getDay(); // 0周日 6周六
+        if(day === 0 || day === 6) {
+            setTimeout(() => {
+                showMessage("🎉 周末愉快！让创造与灵感填满你的闲暇时光 🎉", 3000);
+            }, 800);
+        }
+        
+        // 提供卡片额外的悬停音感 (纯视觉互动已足够)
+        // 另外增加交互：单击任何卡片区域的头衔可以触发小提示?
+        const allCards = document.querySelectorAll('.card');
+        allCards.forEach((card, idx) => {
+            card.addEventListener('click', (e) => {
+                // 防止点击内部链接时二次触发(已处理preventDefault)
+                if(e.target.closest('.card-link')) return;
+                showMessage(`📦 卡片 ${idx+1} · 更多精彩即将解锁`, 1200);
+            });
+        });
+        
+        // 优化: 防止刷新语录时触发表单跳转 (没有表单，无需额外)
+        // 使刷新按钮动画更生动
+        refreshQuoteBtn.addEventListener('mousedown', () => {
+            refreshQuoteBtn.style.transform = 'scale(0.96)';
+        });
+        refreshQuoteBtn.addEventListener('mouseup', () => {
+            refreshQuoteBtn.style.transform = '';
+        });
+        refreshQuoteBtn.addEventListener('mouseleave', () => {
+            refreshQuoteBtn.style.transform = '';
+        });
+        
+        // 页面增加整体入场的淡入效果（用css动画？添加一点点class风格）
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.4s ease';
+        window.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
+        });
+        
+        // 防抖优雅滚动
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // 滚动时添加微妙视觉反馈不做复杂处理，但可记录（仅用于展示交互活跃）
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    })();
+</script>
+</body>
+</html>
